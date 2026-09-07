@@ -8,6 +8,12 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - run: echo "Hello from an inline bash script in a GitHub Action Workflow!"
+  
+  testing-basic-concepts:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Exporing the world of github actions by ${{github.actor}}"
+      - run: echo "It kind of awesome 🚀. Using ${{github.ref}} at the moment"
 
   say-hello-inline-python:
     runs-on: ubuntu-24.04

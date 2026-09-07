@@ -3,25 +3,27 @@ on:
   workflow_dispatch:
 env:
   WORKFLOW_VAR: I_AM_WORKFLOW_SCOPED
-
+  WORKFLOW_VAR1: I_AM_WORKFLOW_1_SCOPED
 jobs:
   job-1:
     runs-on: ubuntu-24.04
     env:
       JOB_VAR: I_AM_JOB_1_SCOPED
+      JOB_VAR1: I_AM_JOB_1_1_SCOPED
     steps:
       - name: Inspect scopes job 1 step 1
         env:
           STEP_VAR: I_AM_STEP_SCOPED
+          STEP_VAR1: I_AM_STEP_1_SCOPED
         run: |
-          echo "WORKFLOW_VAR: $WORKFLOW_VAR"   # visible
-          echo "JOB_VAR:      $JOB_VAR"        # visible
-          echo "STEP_VAR:     $STEP_VAR"       # visible only here
+          echo "WORKFLOW_VAR: $WORKFLOW_VAR $WORKFLOW_VAR1"   # visible
+          echo "JOB_VAR:      $JOB_VAR $JOB_VAR1"        # visible
+          echo "STEP_VAR:     $STEP_VAR $STEP_VAR1"       # visible only here
 
       - name: Inspect scopes job 1 step 2
         run: |
-          echo "WORKFLOW_VAR: $WORKFLOW_VAR"         # visible
-          echo "JOB_VAR:      $JOB_VAR"              # visible
+          echo "WORKFLOW_VAR: $WORKFLOW_VAR $WORKFLOW_VAR1"         # visible
+          echo "JOB_VAR:      $JOB_VAR $JOB_VAR1"              # visible
           echo "STEP_VAR:     ${STEP_VAR:-<UNSET>}"  # not set here
 
   job-2:
